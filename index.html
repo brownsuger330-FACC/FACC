@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>First Avenue Command Center — FACC</title>
+
   <style>
     :root {
       --bg-main: #f4f7f9;
@@ -16,199 +17,252 @@
       --text-muted: #6b7280;
       --danger: #d7263d;
       --danger-soft: #ffe5ea;
-      --radius-card: 18px;
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius-card: 20px;
+      --shadow-soft: 0 12px 35px rgba(15, 23, 42, 0.12);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        system-ui, sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at top, #c0f0ff, #f4f7f9 55%);
+      background: radial-gradient(circle at top left, #e3f5ff 0, #f4f7f9 45%, #f8fafc 100%);
       min-height: 100vh;
+      color: var(--text-main);
       display: flex;
       justify-content: center;
       padding: 16px;
-      color: var(--text-main);
     }
 
-    .app {
+    .page {
+      max-width: 960px;
       width: 100%;
-      max-width: 480px;
     }
 
-    .header-card {
-      background: linear-gradient(135deg, var(--turq-mid), var(--turq-dark));
+    /* ====== HEADER ====== */
+
+    .hero {
+      background: linear-gradient(135deg, var(--turq-dark), var(--turq-mid));
       color: #fff;
-      border-radius: 26px;
-      padding: 18px 18px 20px;
+      border-radius: 28px;
+      padding: 20px 22px;
       box-shadow: var(--shadow-soft);
-      display: flex;
-      gap: 14px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 18px;
       align-items: center;
+      margin-bottom: 18px;
     }
 
-    .logo-circle {
-      width: 60px;
-      height: 60px;
-      border-radius: 18px;
-      background: #fff;
-      overflow: hidden;
+    .hero-logo-wrap {
+      width: 68px;
+      height: 68px;
+      border-radius: 24px;
+      background: #ffffff;
       display: flex;
-      align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      align-items: center;
+      overflow: hidden;
     }
 
-    .logo-circle img {
-      width: 100%;
-      height: 100%;
+    .hero-logo {
+      width: 56px;
+      height: 56px;
       object-fit: contain;
     }
 
-    .header-text h1 {
-      font-size: 14px;
-      letter-spacing: 0.06em;
+    .hero-text h1 {
+      font-size: 18px;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
       opacity: 0.9;
     }
 
-    .header-text h2 {
-      margin-top: 2px;
-      font-size: 18px;
-      font-weight: 700;
+    .hero-text h2 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-top: 4px;
     }
 
-    .header-sub {
+    .hero-sub {
+      font-size: 13px;
       margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    .hero-footer {
+      display: flex;
+      margin-top: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-last-update {
       font-size: 12px;
       opacity: 0.9;
     }
 
-    .last-update {
-      margin-top: 6px;
-      font-size: 11px;
-      opacity: 0.8;
-    }
-
     .pill {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.14);
-      font-size: 11px;
-      margin-top: 8px;
+      background: rgba(15, 118, 110, 0.16);
+      border: 1px solid rgba(148, 239, 215, 0.35);
     }
 
     .pill-dot {
       width: 7px;
       height: 7px;
-      border-radius: 999px;
+      border-radius: 50%;
       background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
     }
 
-    .content {
-      margin-top: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding-bottom: 24px;
+    .pill-auto {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.16);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
+
+    /* ====== LAYOUT ====== */
+
+    .grid-main {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: 1fr;
+        row-gap: 14px;
+      }
+      .hero-logo-wrap {
+        width: 60px;
+        height: 60px;
+      }
+      .grid-main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ====== CARDS ====== */
 
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-card);
-      padding: 16px 16px 14px;
+      padding: 16px 18px;
       box-shadow: var(--shadow-soft);
     }
 
-    .card-header {
+    .card + .card {
+      margin-top: 12px;
+    }
+
+    .card-title-row {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      gap: 8px;
     }
 
     .card-title {
-      font-size: 12px;
-      letter-spacing: 0.14em;
+      font-size: 13px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
-    .chip-status {
+    .badge-status {
+      font-size: 11px;
       padding: 4px 10px;
       border-radius: 999px;
-      font-size: 11px;
       font-weight: 600;
+      text-transform: capitalize;
     }
 
-    .chip-safe {
+    .badge-green {
       background: #dcfce7;
-      color: #166534;
+      color: #15803d;
     }
 
-    .chip-warning {
+    .badge-amber {
       background: #fef3c7;
-      color: #92400e;
+      color: #b45309;
     }
 
-    .value-row {
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-      margin-top: 4px;
+    .badge-red {
+      background: #fee2e2;
+      color: #b91c1c;
     }
 
     .value-main {
-      font-size: 22px;
-      font-weight: 700;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
     }
 
-    .value-unit {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 3px;
+    .value-main span {
+      font-weight: inherit;
     }
 
-    .subtext {
-      margin-top: 6px;
+    .value-currency {
+      font-size: 13px;
+      margin-left: 4px;
+      opacity: 0.85;
+    }
+
+    .card-caption {
       font-size: 12px;
       color: var(--text-muted);
+      margin-top: 4px;
     }
+
+    .card-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .card-note strong {
+      color: var(--turq-dark);
+      font-weight: 600;
+    }
+
+    /* ====== PROJECTS ====== */
 
     .section-title {
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .section-title span.bar {
-      width: 4px;
-      height: 16px;
-      border-radius: 999px;
-      background: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
     .project-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      gap: 10px;
       margin-bottom: 4px;
     }
 
     .project-name {
+      font-size: 15px;
       font-weight: 700;
-      font-size: 14px;
     }
 
     .project-phase {
@@ -217,555 +271,433 @@
       font-weight: 600;
     }
 
-    .project-row {
+    .project-label-row {
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
-      margin-top: 4px;
+      font-size: 11px;
       color: var(--text-muted);
+      margin-top: 4px;
     }
 
-    .project-row strong {
-      color: var(--text-main);
+    .project-metrics {
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .project-metrics-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2px;
+    }
+
+    .project-metrics-row span:last-child {
+      font-weight: 600;
+    }
+
+    .progress-bar-wrap {
+      margin-top: 10px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      height: 7px;
+      overflow: hidden;
     }
 
     .progress-bar {
-      width: 100%;
-      height: 6px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-
-    .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--turq-mid), var(--gold));
-      width: 0%;
-      transition: width 0.4s ease;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        90deg,
+        var(--turq-mid),
+        #22c55e
+      );
+      transition: width 0.6s ease;
     }
 
-    .progress-label {
+    .progress-text-row {
+      display: flex;
+      justify-content: flex-end;
       margin-top: 4px;
       font-size: 11px;
       color: var(--text-muted);
-      text-align: right;
     }
 
-    .school-header {
+    /* ====== JADA CARD ====== */
+
+    .jada-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 4px;
+      gap: 8px;
     }
 
-    .pill-soft {
-      font-size: 11px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: #e0f2fe;
-      color: #075985;
-      font-weight: 500;
-    }
-
-    .risks-card {
-      background: linear-gradient(135deg, #fee2e2, #fecaca);
-      border-radius: var(--radius-card);
-      padding: 14px 14px 16px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .risks-title {
-      font-size: 13px;
+    .jada-title {
+      font-size: 15px;
       font-weight: 700;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #7f1d1d;
     }
 
-    .risks-title span {
-      font-size: 16px;
+    .jada-sub {
+      font-size: 12px;
+      color: var(--turq-mid);
     }
 
-    .risk-item {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 14px;
-      padding: 10px 11px 11px;
-      margin-top: 8px;
+    /* ====== ACTIVE RISKS ====== */
+
+    .risk-card {
+      border-radius: var(--radius-card);
+      padding: 16px 18px;
+      background: linear-gradient(
+        135deg,
+        rgba(220, 38, 38, 0.12),
+        rgba(248, 113, 113, 0.08)
+      );
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 10px;
     }
 
     .risk-header {
       display: flex;
-      justify-content: space-between;
+      align-items: center;
       gap: 8px;
-      align-items: baseline;
       margin-bottom: 4px;
-      font-size: 12px;
-      font-weight: 600;
     }
 
-    .risk-tag {
-      padding: 3px 8px;
+    .risk-icon {
+      width: 20px;
+      height: 20px;
       border-radius: 999px;
-      font-size: 10px;
-      font-weight: 600;
+      background: #fee2e2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 13px;
     }
 
-    .risk-tag-high {
-      background: #fee2e2;
-      color: #b91c1c;
+    .risk-title {
+      font-size: 14px;
+      font-weight: 700;
     }
 
     .risk-body {
-      font-size: 11px;
+      font-size: 12px;
+      margin: 4px 0 6px;
       color: #7f1d1d;
-      line-height: 1.4;
-      margin-bottom: 6px;
+      line-height: 1.5;
     }
 
     .risk-footer {
       font-size: 11px;
-      font-weight: 600;
-      color: #9f1239;
-    }
-
-    .footer-note {
-      margin-top: 10px;
-      font-size: 10px;
-      color: var(--text-muted);
-      text-align: center;
-    }
-
-    .editable {
-      border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
-      cursor: pointer;
-      padding-bottom: 1px;
-    }
-
-    .editable:hover {
-      background: rgba(1, 151, 165, 0.06);
-    }
-
-    .badge-live {
-      font-size: 10px;
-      padding: 2px 6px;
+      display: inline-flex;
+      padding: 4px 9px;
       border-radius: 999px;
-      background: rgba(15, 185, 129, 0.16);
-      color: #047857;
-      margin-left: 6px;
+      background: rgba(127, 29, 29, 0.08);
+      color: #7f1d1d;
       font-weight: 600;
     }
 
-    .small-muted {
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-top: 3px;
-    }
-
-    .error-banner {
-      margin-top: 8px;
-      font-size: 11px;
-      color: #b91c1c;
-      background: #fee2e2;
-      border-radius: 10px;
-      padding: 6px 8px;
-      display: none;
-    }
-
-    .refresh-hint {
-      margin-top: 6px;
-      font-size: 10px;
-      color: var(--text-muted);
+    .data-source {
       text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .data-source span {
+      font-weight: 600;
+      color: var(--turq-dark);
     }
   </style>
 </head>
+
 <body>
-  <div class="app">
-    <header class="header-card">
-      <div class="logo-circle">
-        <!-- يمكنك استبدال هذا الصورة لاحقاً إن أحببت -->
-        <img src="logo.png" alt="First Avenue Logo">
+  <div class="page">
+    <!-- ===== HEADER ===== -->
+    <header class="hero">
+      <div class="hero-logo-wrap">
+        <img src="logo.png" alt="FACC Logo" class="hero-logo" />
       </div>
-      <div class="header-text">
+      <div class="hero-text">
         <h1>FIRST AVENUE FOR INVESTMENT</h1>
         <h2>FACC — Command Center</h2>
-        <div class="header-sub">
+        <p class="hero-sub">
           Live snapshot for cash, projects &amp; risks
-        </div>
-        <div class="last-update" id="last-updated">
-          Last update: — 
-        </div>
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Live data from Google Sheets
-          <span class="badge-live">AUTO</span>
+        </p>
+        <div class="hero-footer">
+          <div class="hero-last-update">
+            Last update:
+            <span id="last-update">—</span>
+          </div>
+          <div class="pill">
+            <span class="pill-dot"></span>
+            <span>Live data from Google Sheets</span>
+          </div>
+          <div class="pill-auto">
+            AUTO
+          </div>
         </div>
       </div>
     </header>
 
-    <main class="content">
-      <!-- CASH -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-title">Cash balance</div>
-          <div class="chip-status chip-safe" id="cash-status">Comfortable</div>
-        </div>
-        <div class="value-row">
-          <div class="value-main editable" id="cash-balance" data-field="Cash_balance">
-            0.00
+    <!-- ===== MAIN GRID ===== -->
+    <main class="grid-main">
+      <!-- LEFT COLUMN -->
+      <section>
+        <!-- CASH BALANCE -->
+        <article class="card">
+          <div class="card-title-row">
+            <div class="card-title">Cash balance</div>
+            <span class="badge-status badge-green">Comfortable</span>
           </div>
-          <div class="value-unit">SAR</div>
-        </div>
-        <div class="subtext">
-          Bank balance after latest payments.
-        </div>
-        <div class="small-muted">
-          اضغط على الرقم للتعديل (يتطلب ربط خطوة الحفظ في الشيت لاحقاً).
-        </div>
-      </section>
-
-      <!-- PENDING PAYMENTS -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-title">Pending payments</div>
-          <div class="chip-status chip-warning" id="pending-status">Under review</div>
-        </div>
-        <div class="value-row">
-          <div class="value-main editable" id="pending-payments" data-field="Pending_payments">
-            0.00
+          <div class="value-main">
+            <span id="cash-balance">0.00</span>
+            <span class="value-currency">SAR</span>
           </div>
-          <div class="value-unit">SAR</div>
-        </div>
-        <div class="subtext">
-          Under negotiation / to be confirmed.
-        </div>
-      </section>
-
-      <!-- 30 DAY OBLIGATIONS -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-title">30-day obligations</div>
-          <div class="chip-status chip-safe" id="obligation-status">Comfortable</div>
-        </div>
-        <div class="value-row">
-          <div class="value-main editable" id="obligations-30d" data-field="Obligation_30D">
-            0.00
-          </div>
-          <div class="value-unit">SAR</div>
-        </div>
-        <div class="subtext">
-          CEO salary &amp; near-term commitments.
-        </div>
-      </section>
-
-      <!-- PROJECTS -->
-      <section class="card">
-        <div class="section-title">
-          <span class="bar"></span>
-          <span>Projects Progress</span>
-        </div>
-
-        <div class="project-header">
-          <div class="project-name">Business Front</div>
-          <div class="project-phase">Design &amp; Licensing Phase</div>
-        </div>
-
-        <div class="project-row">
-          <span>Paid to date</span>
-          <span><strong id="bf-paid" class="editable" data-field="BF_Paid">0.00</strong> SAR</span>
-        </div>
-        <div class="project-row">
-          <span>Total if design fully paid</span>
-          <span><strong id="bf-total" class="editable" data-field="BF_totalFull">0.00</strong> SAR</span>
-        </div>
-        <div class="project-row">
-          <span>Remaining design fees</span>
-          <span><strong id="bf-remaining" class="editable" data-field="BF_remainingDesign">0.00</strong> SAR</span>
-        </div>
-
-        <div class="progress-bar">
-          <div class="progress-fill" id="bf-progress-fill"></div>
-        </div>
-        <div class="progress-label">
-          <span id="bf-progress-label">0%</span> complete (fees)
-        </div>
-      </section>
-
-      <!-- JADA SCHOOL -->
-      <section class="card">
-        <div class="school-header">
-          <div class="project-name">Jada School</div>
-          <div class="pill-soft">Awaiting Municipality approval</div>
-        </div>
-        <div class="project-row">
-          <span>Spent so far</span>
-          <span><strong id="jada-spent" class="editable" data-field="JADA_spent">0.00</strong> SAR</span>
-        </div>
-        <div class="project-row">
-          <span>Physical progress</span>
-          <span><strong>0%</strong></span>
-        </div>
-        <div class="subtext" style="margin-top:6px;">
-          No construction works yet — approvals in progress.
-        </div>
-      </section>
-
-      <!-- RISKS -->
-      <section class="risks-card">
-        <div class="risks-title">
-          <span>⚠️</span> Active Risks
-        </div>
-
-        <article class="risk-item">
-          <div class="risk-header">
-            <span>Business Front — Foundation Water Risk</span>
-            <span class="risk-tag risk-tag-high">High priority</span>
-          </div>
-          <div class="risk-body">
-            Estimated extra cost 150k–250k SAR for foundations.  
-            الإجراء المطلوب: الحصول على معلومات من المبنى المجاور، وتقدير استشاري لتكلفة نزح المياه وتأثيرها على البرنامج الزمني.
-          </div>
-          <div class="risk-footer">
-            High priority — under study
-          </div>
+          <p class="card-caption">
+            Bank balance after latest payments.
+          </p>
+          <p class="card-note">
+            اضغط على الرقم للتعديل (يتطلب ربط الحقول عبر Google Sheets).
+          </p>
         </article>
 
-        <article class="risk-item">
-          <div class="risk-header">
-            <span>Jada School — Permit Delay</span>
-            <span class="risk-tag" style="background:#fee2e2;color:#9f1239;">Schedule risk</span>
+        <!-- PENDING PAYMENTS -->
+        <article class="card">
+          <div class="card-title-row">
+            <div class="card-title">Pending payments</div>
+            <span class="badge-status badge-amber">Under review</span>
           </div>
-          <div class="risk-body">
-            Delay in municipality approval / consultant follow-up.  
-            الإجراء المقترح: تسريع المتابعة مع الأمانة أو دراسة بدائل استشارية لتقليل أثر التأخير.
+          <div class="value-main">
+            <span id="pending-payments">0.00</span>
+            <span class="value-currency">SAR</span>
           </div>
-          <div class="risk-footer">
-            Schedule risk — escalation recommended
+          <p class="card-caption">
+            Under negotiation / to be confirmed.
+          </p>
+        </article>
+
+        <!-- 30-DAY OBLIGATIONS -->
+        <article class="card">
+          <div class="card-title-row">
+            <div class="card-title">30-day obligations</div>
+            <span class="badge-status badge-green">Comfortable</span>
+          </div>
+          <div class="value-main">
+            <span id="obligation-30d">0.00</span>
+            <span class="value-currency">SAR</span>
+          </div>
+          <p class="card-caption">
+            CEO salary &amp; near-term commitments.
+          </p>
+        </article>
+
+        <!-- PROJECTS -->
+        <article class="card">
+          <h3 class="section-title">Projects Progress</h3>
+
+          <!-- BUSINESS FRONT -->
+          <div>
+            <div class="project-header">
+              <div>
+                <div class="project-name">Business Front</div>
+                <div class="project-phase">Design &amp; Licensing Phase</div>
+              </div>
+            </div>
+
+            <div class="project-metrics">
+              <div class="project-metrics-row">
+                <span>Paid to date</span>
+                <span><span id="bf-paid">0.00</span> SAR</span>
+              </div>
+              <div class="project-metrics-row">
+                <span>Total if design fully paid</span>
+                <span><span id="bf-total-full">0.00</span> SAR</span>
+              </div>
+              <div class="project-metrics-row">
+                <span>Remaining design fees</span>
+                <span><span id="bf-remaining-design">0.00</span> SAR</span>
+              </div>
+            </div>
+
+            <div class="progress-bar-wrap">
+              <div id="bf-progress-bar" class="progress-bar"></div>
+            </div>
+            <div class="progress-text-row">
+              <span id="bf-progress-text">0% complete (fees)</span>
+            </div>
           </div>
         </article>
       </section>
 
-      <div class="error-banner" id="error-banner">
-        تعذر تحميل البيانات من Google Sheets. تأكد أن الرابط منشور كـ "صفحة ويب" وأن الاتصال بالإنترنت يعمل ثم حدّث الصفحة.
-      </div>
+      <!-- RIGHT COLUMN -->
+      <section>
+        <!-- JADA SCHOOL -->
+        <article class="card">
+          <div class="jada-header">
+            <div>
+              <div class="jada-title">Jada School</div>
+              <div class="jada-sub">Awaiting Municipality approval</div>
+            </div>
+          </div>
 
-      <p class="footer-note">
-        Data source: FACC Financial updates (Google Sheets).
-      </p>
-      <p class="refresh-hint">
-        لتحديث الأرقام بعد تعديل الشيت: اسحب لتحديث الصفحة أو أعد فتح الاختصار.
-      </p>
+          <div class="project-metrics" style="margin-top: 14px;">
+            <div class="project-metrics-row">
+              <span>Spent so far</span>
+              <span><span id="jada-spent">0.00</span> SAR</span>
+            </div>
+            <div class="project-metrics-row">
+              <span>Physical progress</span>
+              <span>0%</span>
+            </div>
+          </div>
+          <p class="card-caption" style="margin-top: 10px;">
+            No construction works yet — approvals in progress.
+          </p>
+        </article>
+
+        <!-- ACTIVE RISKS -->
+        <article class="card" style="margin-top: 12px;">
+          <h3 class="section-title">Active risks</h3>
+
+          <!-- Risk 1 -->
+          <div class="risk-card">
+            <div class="risk-header">
+              <div class="risk-icon">⚠️</div>
+              <div class="risk-title">
+                Business Front — Foundation Water Risk
+              </div>
+            </div>
+            <div class="risk-body">
+              إزاحة المياه في موقع الأساسات. الإجراء المطلوب: الحصول على معلومات من
+              المبنى المجاور وتقدير استشاري لمدة التأخير ومبلغ الاحتياطي الإضافي
+              في تكلفة الأساسات (توقع مابين ‎150,000–250,000 ريال).
+            </div>
+            <div class="risk-footer">
+              High priority — under study
+            </div>
+          </div>
+
+          <!-- Risk 2 -->
+          <div class="risk-card">
+            <div class="risk-header">
+              <div class="risk-icon">⏱</div>
+              <div class="risk-title">
+                Jada School — Permit Delay
+              </div>
+            </div>
+            <div class="risk-body">
+              تأخر اعتماد المخططات في الأمانة يسبب بطء انطلاقة المشروع. الإجراء
+              المقترح: دراسة بدائل لمكتب استشاري آخر أو مسار متابعة آخر لتسريع
+              إصدار رخصة البناء.
+            </div>
+            <div class="risk-footer">
+              Schedule risk — escalation recommended
+            </div>
+          </div>
+
+          <p class="data-source">
+            Data source:
+            <span>FACC Financial updates (Google Sheets).</span>
+          </p>
+        </article>
+      </section>
     </main>
   </div>
 
   <script>
-    // رابط الشيت المنشور (صفحة ويب) — لا تعدله حالياً
-    const SHEET_PUBLISHED_URL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpaqjA-UWK3cEkH0WOTcigaNQ-p35ypTyxbpVWC5PWtDXbWPhQ2gEaKakBlA9SBFZPbakjdsuVtbIr/pubhtml?gid=0&single=true";
+    // رابط Google Sheet المنشور كـ CSV
+    // مأخوذ من رابط النشر الذي أرسلته لي (تم تحويله من pubhtml إلى CSV)
+    const SHEET_URL =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpaqjA-UWK3cEkH0WOTcigaNQ-p35ypTyxbpVWC5PWtDXbWPhQ2gEaKakBlA9SBFZPbakjdsuVtbIr/pub?gid=0&single=true&output=csv";
 
-    // مستقبلاً: إذا أنشأنا Web App لحفظ التعديلات نضع رابطها هنا
-    const SHEET_UPDATE_ENDPOINT = ""; // اتركه فارغاً الآن
-
-    const fieldIdMap = {
-      Cash_balance: "cash-balance",
-      Pending_payments: "pending-payments",
-      Obligation_30D: "obligations-30d",
-      BF_Paid: "bf-paid",
-      BF_totalFull: "bf-total",
-      BF_remainingDesign: "bf-remaining",
-      BF_progress: "bf-progress-label",
-      JADA_spent: "jada-spent",
-    };
-
-    function formatCurrency(value) {
-      if (value === "" || value === null || isNaN(value)) return "0.00";
-      return Number(value).toLocaleString("en-US", {
+    function formatNumber(value) {
+      const num = Number(value) || 0;
+      return num.toLocaleString("en-US", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       });
     }
 
-    async function fetchSheetData() {
-      const res = await fetch(SHEET_PUBLISHED_URL);
-      const html = await res.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      const table = doc.querySelector("table");
-      if (!table) throw new Error("No table found in published sheet.");
-
-      const rows = Array.from(table.querySelectorAll("tr"));
-      if (rows.length < 2) throw new Error("Sheet must have header + one data row.");
-
-      const headerCells = Array.from(rows[0].querySelectorAll("td,th")).map((c) =>
-        c.textContent.trim()
-      );
-      const dataCells = Array.from(rows[1].querySelectorAll("td,th")).map((c) =>
-        c.textContent.trim()
-      );
-
-      const data = {};
-      headerCells.forEach((h, i) => {
-        if (h) data[h] = dataCells[i] || "";
-      });
-      return data;
-    }
-
-    function setText(id, value, isCurrency = true) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const numeric = parseFloat(String(value).replace(/,/g, "")) || 0;
-      el.dataset.value = numeric;
-      el.textContent = isCurrency ? formatCurrency(numeric) : String(value);
-    }
-
-    function applyStatus(data) {
-      const cash = parseFloat(data.Cash_balance || "0");
-      const pending = parseFloat(data.Pending_payments || "0");
-      const obligations = parseFloat(data.Obligation_30D || "0");
-
-      const cashStatus = document.getElementById("cash-status");
-      const pendingStatus = document.getElementById("pending-status");
-      const obligationStatus = document.getElementById("obligation-status");
-
-      if (cashStatus) {
-        if (cash >= pending + obligations) {
-          cashStatus.textContent = "Comfortable";
-          cashStatus.className = "chip-status chip-safe";
-        } else {
-          cashStatus.textContent = "Tight";
-          cashStatus.className = "chip-status chip-warning";
-        }
-      }
-
-      if (pendingStatus) {
-        pendingStatus.textContent = "Under review";
-      }
-
-      if (obligationStatus) {
-        obligationStatus.textContent = "Comfortable";
-      }
-    }
-
-    function makeEditableElements() {
-      const editables = document.querySelectorAll(".editable");
-
-      editables.forEach((el) => {
-        el.addEventListener("click", async () => {
-          const fieldName = el.dataset.field;
-          const current = el.dataset.value || el.textContent.replace(/,/g, "");
-          const label = fieldName || "Value";
-
-          const input = prompt(`أدخل القيمة الجديدة لـ ${label}:`, current);
-          if (input === null) return;
-
-          const numeric = parseFloat(input.replace(/,/g, ""));
-          if (isNaN(numeric)) {
-            alert("قيمة غير صالحة. الرجاء إدخال رقم فقط.");
-            return;
-          }
-
-          // حدّث الشكل مباشرة
-          el.dataset.value = numeric;
-          el.textContent = formatCurrency(numeric);
-
-          if (!SHEET_UPDATE_ENDPOINT) {
-            alert(
-              "تم تعديل الرقم في الداشبورد فقط.\nلجعل التعديل يُحفظ في Google Sheets نحتاج إنشاء Web App بسيط في Apps Script وربطه هنا. يمكننا عملها لاحقاً بخطوات مختصرة."
-            );
-            return;
-          }
-
-          try {
-            await fetch(SHEET_UPDATE_ENDPOINT, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                fieldName,
-                value: numeric,
-              }),
-            });
-          } catch (err) {
-            console.error(err);
-            alert("لم يتم إرسال التعديل إلى الشيت بسبب خطأ في الاتصال.");
-          }
-        });
-      });
-    }
-
-    async function init() {
-      const errorBanner = document.getElementById("error-banner");
+    async function loadSheetData() {
       try {
-        const data = await fetchSheetData();
+        const res = await fetch(SHEET_URL);
+        const csvText = await res.text();
 
-        // عيّن الأرقام في البطاقات
-        if (data.Cash_balance !== undefined) {
-          setText("cash-balance", data.Cash_balance);
-        }
-        if (data.Pending_payments !== undefined) {
-          setText("pending-payments", data.Pending_payments);
-        }
-        if (data.Obligation_30D !== undefined) {
-          setText("obligations-30d", data.Obligation_30D);
-        }
-        if (data.BF_Paid !== undefined) {
-          setText("bf-paid", data.BF_Paid);
-        }
-        if (data.BF_totalFull !== undefined) {
-          setText("bf-total", data.BF_totalFull);
-        }
-        if (data.BF_remainingDesign !== undefined) {
-          setText("bf-remaining", data.BF_remainingDesign);
-        }
-        if (data.JADA_spent !== undefined) {
-          setText("jada-spent", data.JADA_spent);
+        const rows = csvText
+          .trim()
+          .split("\n")
+          .map((row) => row.split(","));
+
+        const headers = rows[0].map((h) => h.trim());
+        const data = rows[1] || [];
+
+        function getVal(colName) {
+          const idx = headers.indexOf(colName);
+          if (idx === -1) return 0;
+          const raw = (data[idx] || "").replace(/"/g, "").trim();
+          const num = parseFloat(raw);
+          return isNaN(num) ? 0 : num;
         }
 
-        // نسبة التقدم في design (BF_progress)
-        const progressVal = parseFloat(data.BF_progress || "0") || 0;
-        const progressLabel = document.getElementById("bf-progress-label");
-        const progressFill = document.getElementById("bf-progress-fill");
-        if (progressLabel) {
-          progressLabel.textContent = `${progressVal}%`;
-        }
-        if (progressFill) {
-          progressFill.style.width = `${Math.min(Math.max(progressVal, 0), 100)}%`;
-        }
+        const cashBalance = getVal("Cash_balance");
+        const pendingPayments = getVal("Pending_payments");
+        const obligation30D = getVal("Obligation_30D");
+        const bfPaid = getVal("BF_Paid");
+        const bfTotalFull = getVal("BF_totalFull");
+        const bfRemainingDesign = getVal("BF_remainingDesign");
+        const bfProgress = getVal("BF_progress");
+        const jadaSpent = getVal("JADA_spent");
 
-        // حالة الأمان
-        applyStatus(data);
+        // تحديث الأرقام في الداشبورد
+        document.getElementById("cash-balance").textContent =
+          formatNumber(cashBalance);
+        document.getElementById("pending-payments").textContent =
+          formatNumber(pendingPayments);
+        document.getElementById("obligation-30d").textContent =
+          formatNumber(obligation30D);
 
-        // آخر تحديث (من الجهاز)
-        const last = document.getElementById("last-updated");
-        if (last) {
-          const now = new Date();
-          last.textContent =
-            "Last update: " +
-            now.toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "short",
-              year: "numeric",
-            }) +
-            " " +
-            now.toLocaleTimeString("en-GB", {
-              hour: "2-digit",
-              minute: "2-digit",
-            });
-        }
+        document.getElementById("bf-paid").textContent =
+          formatNumber(bfPaid);
+        document.getElementById("bf-total-full").textContent =
+          formatNumber(bfTotalFull);
+        document.getElementById("bf-remaining-design").textContent =
+          formatNumber(bfRemainingDesign);
 
-        errorBanner.style.display = "none";
+        // نسبة التقدم
+        const progressElement = document.getElementById("bf-progress-bar");
+        const progressText = document.getElementById("bf-progress-text");
+        const progressValue =
+          isNaN(bfProgress) || bfProgress < 0
+            ? 0
+            : bfProgress > 100
+            ? 100
+            : bfProgress;
 
-        // تفعيل خاصية التعديل البصري
-        makeEditableElements();
+        progressElement.style.width = progressValue + "%";
+        progressText.textContent = progressValue + "% complete (fees)";
+
+        // Jada School
+        document.getElementById("jada-spent").textContent =
+          formatNumber(jadaSpent);
+
+        // وقت آخر تحديث
+        const now = new Date();
+        document.getElementById("last-update").textContent =
+          now.toLocaleString("en-SA", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          });
       } catch (err) {
-        console.error(err);
-        errorBanner.style.display = "block";
+        console.error("Error loading sheet data:", err);
+        document.getElementById("last-update").textContent = "Error loading data";
       }
     }
 
-    document.addEventListener("DOMContentLoaded", init);
+    // تحميل البيانات عند فتح الصفحة
+    loadSheetData();
   </script>
 </body>
 </html>
