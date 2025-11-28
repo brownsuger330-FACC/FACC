@@ -2,90 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>First Avenue Command Center — FACC</title>
   <style>
     :root {
-      --bg-main: #050b10;
-      --bg-gradient-top: #071b24;
-      --bg-gradient-bottom: #020509;
-
-      --card-bg: #0b1822;
-      --card-bg-soft: #101f2b;
-      --card-border: #1f2d3a;
-
+      --bg-main: #f4f7f9;
+      --card-bg: #ffffff;
       --turq-dark: #007a87;
       --turq-mid: #0197a5;
       --turq-light: #e6ffff;
-
       --gold: #d4af37;
-      --gold-soft: rgba(212, 175, 55, 0.2);
-
-      --text-main: #e5f3ff;
-      --text-muted: #9ca3af;
-
-      --danger: #dc2626;
-
+      --text-main: #12212a;
+      --text-muted: #6b7280;
+      --danger: #d7263d;
+      --danger-soft: #ffe5ea;
+      --warning: #e0a100;
+      --warning-soft: #fff4d6;
+      --success: #1a9c5b;
+      --success-soft: #ddf5ea;
+      --info: #2563eb;
+      --info-soft: #e0ebff;
+      --purple: #6b21a8;
+      --purple-soft: #f3e8ff;
       --radius-card: 18px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.35);
-
-      /* Risk colors */
-      --risk-high-bg: #2b0b14;
-      --risk-high-border: #7f1d1d;
-      --risk-high-pill: #f97373;
-
-      --risk-med-bg: #2b1908;
-      --risk-med-border: #a16207;
-      --risk-med-pill: #fdba74;
-
-      --risk-low-bg: #062814;
-      --risk-low-border: #166534;
-      --risk-low-pill: #6ee7b7;
-
-      --risk-review-bg: #141326;
-      --risk-review-border: #4c1d95;
-      --risk-review-pill: #a855f7;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+        -system-ui, "Segoe UI", sans-serif;
     }
 
     body {
+      background: radial-gradient(circle at top, #d9f3ff 0, #f4f7f9 55%, #e4edf4 100%);
       min-height: 100vh;
-      background: radial-gradient(circle at top left, #07253a, #020509);
-      color: var(--text-main);
       display: flex;
       justify-content: center;
-      padding: 18px 10px 40px;
+      padding: 20px 12px 40px;
+      color: var(--text-main);
     }
 
-    .app-shell {
+    .wrapper {
       width: 100%;
       max-width: 480px;
     }
 
-    /* HERO / HEADER */
-
     .hero-card {
-      background: radial-gradient(
-          circle at top left,
-          rgba(54, 207, 201, 0.25),
-          transparent 55%
-        ),
-        linear-gradient(135deg, #02141e, #042530);
-      border-radius: 26px;
-      padding: 18px 18px 16px;
+      background: radial-gradient(circle at top left, #0ba9b5, #006d7a);
+      color: #ffffff;
+      border-radius: 28px;
+      padding: 22px 20px 24px;
       box-shadow: var(--shadow-soft);
-      border: 1px solid #113649;
       margin-bottom: 16px;
       position: relative;
       overflow: hidden;
@@ -94,500 +64,346 @@
     .hero-card::after {
       content: "";
       position: absolute;
-      inset: -40px;
-      background: radial-gradient(
-        circle at top right,
-        rgba(212, 175, 55, 0.12),
-        transparent 55%
-      );
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 55%);
       opacity: 0.9;
       pointer-events: none;
     }
 
-    .hero-inner {
+    .hero-content {
       position: relative;
-      z-index: 1;
       display: flex;
-      gap: 14px;
       align-items: center;
+      gap: 14px;
     }
 
-    .logo-pill {
-      width: 62px;
-      height: 62px;
-      border-radius: 22px;
+    .hero-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
       background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
       flex-shrink: 0;
+      overflow: hidden;
     }
 
-    .logo-pill img {
+    .hero-logo img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
 
-    .hero-text {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .hero-title-main {
-      font-size: 11px;
-      letter-spacing: 0.16em;
+    .hero-text h1 {
+      font-size: 17px;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: #ffffff;
       opacity: 0.9;
     }
 
-    .hero-title-sub {
-      font-size: 18px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #ffffff;
-      line-height: 1.4;
+    .hero-text h2 {
+      margin-top: 4px;
+      font-size: 22px;
+      font-weight: 750;
     }
 
-    .hero-title-sub .gold {
-      color: var(--gold);
+    .hero-sub {
+      margin-top: 6px;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .hero-meta {
+      position: relative;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
     }
 
     .last-update {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 4px;
+      opacity: 0.9;
     }
 
-    /* KPI GRID */
-
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    @media (min-width: 420px) {
-      .kpi-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .kpi-card {
-      background: radial-gradient(circle at top left, #113245, #050f17);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--card-border);
-      padding: 10px 10px 12px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .kpi-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .kpi-value {
-      font-size: 15px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 4px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .kpi-sub {
-      font-size: 11px;
-      color: var(--text-muted);
+    .pill-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
       align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
       font-weight: 600;
-      border: 1px solid transparent;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
-    .pill-safe {
-      background: #022c22;
-      color: #6ee7b7;
-      border-color: #064e3b;
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      margin-inline-end: 6px;
+      background: #10b981;
     }
 
-    .pill-warn {
-      background: #451a03;
-      color: #fed7aa;
-      border-color: #92400e;
+    .pill--green {
+      background: var(--success-soft);
+      color: var(--success);
     }
 
-    .pill-neutral {
-      background: #020617;
-      color: #64748b;
-      border-color: #1e293b;
+    .pill--amber {
+      background: var(--warning-soft);
+      color: var(--warning);
     }
 
-    /* SECTION TITLE */
+    .pill--red {
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .pill--blue {
+      background: var(--info-soft);
+      color: var(--info);
+    }
+
+    .pill--purple {
+      background: var(--purple-soft);
+      color: var(--purple);
+    }
+
+    .pill--grey {
+      background: rgba(15, 23, 42, 0.06);
+      color: rgba(15, 23, 42, 0.8);
+    }
+
+    .pill--outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      color: #e0faff;
+    }
+
+    .pill--outline .pill-dot {
+      background: #22c55e;
+    }
+
+    .section {
+      margin-top: 10px;
+    }
 
     .section-title {
       font-size: 13px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin: 4px 2px 8px;
+      color: #6b7280;
+      margin-bottom: 6px;
+      padding-inline: 2px;
+    }
+
+    .cards-list {
       display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .section-title::before {
-      content: "";
-      width: 18px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--turq-mid), transparent);
-      opacity: 0.6;
-    }
-
-    /* PROJECTS */
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+      flex-direction: column;
       gap: 10px;
-      margin-bottom: 18px;
     }
 
-    .project-card {
-      background: radial-gradient(circle at top left, #102537, #030910);
+    .card {
+      background: var(--card-bg);
       border-radius: var(--radius-card);
-      border: 1px solid var(--card-border);
-      padding: 12px 12px 10px;
+      padding: 14px 16px 14px;
       box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
     }
 
-    .project-header {
+    .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
+      align-items: center;
       margin-bottom: 6px;
+      gap: 10px;
     }
 
-    .project-name {
+    .card-title {
       font-size: 14px;
-      font-weight: 700;
-      color: var(--turq-mid);
+      font-weight: 650;
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
-    .project-badge {
-      font-size: 10px;
-      padding: 3px 9px;
-      border-radius: var(--radius-pill);
-      background: rgba(1, 151, 165, 0.16);
-      color: #e0faff;
-      border: 1px solid rgba(1, 151, 165, 0.55);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-    }
-
-    .project-row {
-      display: flex;
-      justify-content: space-between;
+    .card-subtitle {
       font-size: 11px;
-      margin-bottom: 3px;
       color: var(--text-muted);
+      margin-bottom: 10px;
     }
 
-    .project-row span.value {
-      color: #ffffff;
-      font-weight: 600;
-    }
-
-    .project-row:last-of-type {
-      margin-bottom: 6px;
-    }
-
-    /* PROGRESS BARS */
-
-    .progress-block {
-      margin-top: 6px;
-    }
-
-    .progress-label {
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-bottom: 3px;
+    .value-line {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .progress-label span.value {
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 11px;
-    }
-
-    .progress-bar {
-      position: relative;
-      height: 9px;
-      border-radius: 999px;
-      background: #020617;
-      overflow: hidden;
-      border: 1px solid #1f2933;
-    }
-
-    .progress-fill-actual {
-      position: absolute;
-      inset: 0;
-      width: 0%;
-      background: linear-gradient(
-        90deg,
-        #36cfc9,
-        #0197a5,
-        #007a87
-      );
-      transition: width 0.4s ease-out;
-    }
-
-    .progress-fill-time {
-      position: absolute;
-      inset: 0;
-      width: 0%;
-      background: var(--gold-soft);
-      mix-blend-mode: screen;
-      transition: width 0.4s ease-out;
-    }
-
-    .progress-dot {
-      position: absolute;
-      top: 50%;
-      width: 11px;
-      height: 11px;
-      border-radius: 999px;
-      border: 2px solid var(--gold);
-      background: #020617;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
-    }
-
-    .schedule-indicator {
-      margin-top: 4px;
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-      border: 1px solid transparent;
-    }
-
-    .schedule-indicator span.dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #6b7280;
-    }
-
-    .schedule-indicator.on-track {
-      border-color: #1d4ed8;
-      background: rgba(37, 99, 235, 0.1);
-      color: #bfdbfe;
-    }
-
-    .schedule-indicator.on-track span.dot {
-      background: #60a5fa;
-    }
-
-    .schedule-indicator.ahead {
-      border-color: #16a34a;
-      background: rgba(22, 163, 74, 0.12);
-      color: #bbf7d0;
-    }
-
-    .schedule-indicator.ahead span.dot {
-      background: #4ade80;
-    }
-
-    .schedule-indicator.behind {
-      border-color: #dc2626;
-      background: rgba(220, 38, 38, 0.12);
-      color: #fecaca;
-    }
-
-    .schedule-indicator.behind span.dot {
-      background: #f97373;
-    }
-
-    /* RISK CARD */
-
-    .risk-card {
-      border-radius: var(--radius-card);
-      padding: 12px 12px 10px;
-      margin-bottom: 18px;
-      border: 1px solid var(--card-border);
-      box-shadow: var(--shadow-soft);
-      background: #020617;
-    }
-
-    .risk-card.risk-high {
-      background: var(--risk-high-bg);
-      border-color: var(--risk-high-border);
-    }
-
-    .risk-card.risk-med {
-      background: var(--risk-med-bg);
-      border-color: var(--risk-med-border);
-    }
-
-    .risk-card.risk-low {
-      background: var(--risk-low-bg);
-      border-color: var(--risk-low-border);
-    }
-
-    .risk-card.risk-review {
-      background: var(--risk-review-bg);
-      border-color: var(--risk-review-border);
-    }
-
-    .risk-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-
-    .risk-title {
-      font-size: 13px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .risk-title span.icon {
-      font-size: 15px;
-    }
-
-    .risk-pill {
-      font-size: 10px;
-      padding: 3px 9px;
-      border-radius: var(--radius-pill);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      white-space: nowrap;
-    }
-
-    .risk-card.risk-high .risk-pill {
-      background: var(--risk-high-pill);
-      color: #111827;
-    }
-
-    .risk-card.risk-med .risk-pill {
-      background: var(--risk-med-pill);
-      color: #111827;
-    }
-
-    .risk-card.risk-low .risk-pill {
-      background: var(--risk-low-pill);
-      color: #022c22;
-    }
-
-    .risk-card.risk-review .risk-pill {
-      background: var(--risk-review-pill);
-      color: #020617;
-    }
-
-    .risk-body {
-      font-size: 11px;
-      color: #e5e7eb;
-      line-height: 1.5;
+      align-items: baseline;
+      gap: 4px;
       margin-bottom: 4px;
     }
 
-    .risk-body div.label {
-      font-size: 10px;
-      color: var(--text-muted);
-      margin-bottom: 2px;
+    .value-main {
+      font-size: 22px;
+      font-weight: 750;
     }
 
-    /* ADMIN PANEL */
-
-    details.admin-panel {
-      background: #020617;
-      border-radius: 18px;
-      border: 1px solid #1e293b;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-      padding: 10px 10px 8px;
-      color: var(--text-main);
-    }
-
-    details.admin-panel > summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+    .value-currency {
       font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
       color: var(--text-muted);
+      font-weight: 500;
     }
 
-    details.admin-panel > summary::-webkit-details-marker {
-      display: none;
+    .value-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
     }
 
-    .admin-tag {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: var(--radius-pill);
-      border: 1px solid #1e293b;
-      background: #020617;
-      color: #6b7280;
+    .muted-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
     }
 
-    .admin-body {
-      margin-top: 10px;
-      display: grid;
+    .meter {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .meter-inner {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #16a34a, #22c55e);
+      width: 0%;
+      transition: width 0.6s ease-out;
+    }
+
+    .meter-inner--amber {
+      background: linear-gradient(90deg, #eab308, #f97316);
+    }
+
+    .meter-inner--red {
+      background: linear-gradient(90deg, #ef4444, #b91c1c);
+    }
+
+    .meter-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
       gap: 10px;
     }
 
-    .admin-section-title {
+    .project-phase {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .project-metrics {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 1.4fr 1.4fr;
+      gap: 6px 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .metric-label {
+      color: var(--text-muted);
+    }
+
+    .metric-value {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .schedule-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .risks-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .risk-body {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .admin-panel {
+      margin-top: 16px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #e5e7eb;
+      padding: 10px 10px 12px;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .admin-header span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .admin-header-tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .admin-body {
+      margin-top: 8px;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      padding-top: 8px;
+      display: none;
+    }
+
+    .admin-body.open {
+      display: block;
+    }
+
+    .admin-group-title {
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
+      color: #9ca3af;
+      margin: 6px 0 4px;
     }
 
     .admin-grid {
@@ -599,1036 +415,943 @@
     .admin-field {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
+      font-size: 11px;
     }
 
     .admin-label {
-      font-size: 10px;
-      color: var(--text-muted);
+      color: #9ca3af;
     }
 
     .admin-input,
-    .admin-select {
+    .admin-select,
+    .admin-textarea {
+      width: 100%;
       border-radius: 10px;
-      border: 1px solid #1f2933;
-      background: #020617;
-      color: #e5f3ff;
-      padding: 6px 8px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      padding: 4px 7px;
       font-size: 11px;
-      outline: none;
-    }
-
-    .admin-input:focus,
-    .admin-select:focus {
-      border-color: var(--turq-mid);
     }
 
     .admin-textarea {
-      width: 100%;
-      min-height: 56px;
+      min-height: 50px;
       resize: vertical;
     }
 
-    .admin-btn-row {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .admin-btn {
-      flex: 1;
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 11px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .admin-btn-primary {
-      background: linear-gradient(90deg, #0197a5, #36cfc9);
-      color: #020617;
-      border-color: #0891b2;
-      font-weight: 700;
-    }
-
-    .admin-btn-secondary {
-      background: #020617;
-      color: var(--text-muted);
-      border-color: #1f2937;
-    }
-
-    .admin-hint {
-      font-size: 10px;
+    .admin-input::placeholder,
+    .admin-textarea::placeholder {
       color: #6b7280;
+    }
+
+    .admin-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       margin-top: 4px;
     }
 
-    @media (max-width: 380px) {
-      .hero-inner {
-        flex-direction: row;
-        align-items: flex-start;
+    .admin-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+
+    .btn-save {
+      border: none;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: linear-gradient(90deg, #22c55e, #0ea5e9);
+      color: #022c22;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+      z-index: 40;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    @media (min-width: 720px) {
+      body {
+        padding-top: 32px;
       }
-      .hero-title-sub {
-        font-size: 16px;
-        letter-spacing: 0.14em;
+
+      .wrapper {
+        max-width: 520px;
       }
-      .admin-grid {
-        grid-template-columns: 1fr;
+
+      .hero-card {
+        border-radius: 32px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="app-shell">
-    <!-- HERO -->
+  <div class="wrapper">
     <header class="hero-card">
-      <div class="hero-inner">
-        <div class="logo-pill">
-          <!-- شعار الجادة: تأكد أن الملف موجود باسم logo.png في نفس الريبو -->
-          <img src="logo.png" alt="First Avenue Logo" />
+      <div class="hero-content">
+        <div class="hero-logo">
+          <img src="logo.png" alt="FACC Logo" />
         </div>
         <div class="hero-text">
-          <div class="hero-title-main">
-            FIRST AVENUE FOR INVESTMENT
+          <h1>FIRST AVENUE FOR INVESTMENT</h1>
+          <h2>FACC — Command Center</h2>
+          <p class="hero-sub">Live snapshot for cash, projects &amp; risks</p>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <p class="last-update" id="last-update">Last update: —</p>
+        <div class="pill-row">
+          <div class="pill pill--outline">
+            <span class="pill-dot"></span>
+            <span>Live data from Google Sheets</span>
           </div>
-          <div class="hero-title-sub">
-            <span class="gold">FACC</span> — Command Center
-          </div>
-          <div class="last-update" id="last-update">
-            Last update: …
-          </div>
+          <div class="pill pill--grey">AUTO</div>
         </div>
       </div>
     </header>
 
-    <!-- KPIs -->
-    <section class="kpi-grid">
-      <article class="kpi-card">
-        <div class="kpi-label">Cash Balance</div>
-        <div class="kpi-value" id="kpi-cash">—</div>
-        <div class="kpi-sub">
-          <span>Available cash</span>
-          <span class="pill pill-safe" id="kpi-cash-pill">
-            Comfortable
+    <main>
+      <!-- Cash Section -->
+      <section class="section">
+        <h3 class="section-title">Cash overview</h3>
+        <div class="cards-list">
+          <!-- Cash balance -->
+          <article class="card" id="card-cash">
+            <div class="card-header">
+              <h4 class="card-title">Cash balance</h4>
+              <div class="pill pill--green" id="cash-status-pill">Comfortable</div>
+            </div>
+            <p class="card-subtitle">Bank balance after latest payments.</p>
+            <div class="value-line">
+              <div class="value-main" id="cash-value">0.00</div>
+              <div class="value-currency">SAR</div>
+            </div>
+            <p class="value-caption" id="cash-caption">
+              Cash vs. short–term obligations (30D + pending).
+            </p>
+            <p class="muted-note">اضغط على الرقم للتعديل (يتطلب ربط الحقول عبر Google Sheets).</p>
+          </article>
+
+          <!-- Pending payments -->
+          <article class="card" id="card-pending">
+            <div class="card-header">
+              <h4 class="card-title">Pending payments</h4>
+              <div class="pill pill--amber" id="pending-status-pill">Under review</div>
+            </div>
+            <p class="card-subtitle">Under negotiation / to be confirmed.</p>
+            <div class="value-line">
+              <div class="value-main" id="pending-value">0.00</div>
+              <div class="value-currency">SAR</div>
+            </div>
+            <p class="value-caption" id="pending-caption">
+              Expected outflows still under discussion.
+            </p>
+          </article>
+
+          <!-- 30-day obligations -->
+          <article class="card" id="card-obligation">
+            <div class="card-header">
+              <h4 class="card-title">30-day obligations</h4>
+              <div class="pill pill--green" id="obligation-status-pill">Comfortable</div>
+            </div>
+            <p class="card-subtitle">CEO salary &amp; near-term commitments.</p>
+            <div class="value-line">
+              <div class="value-main" id="obligation-value">0.00</div>
+              <div class="value-currency">SAR</div>
+            </div>
+            <p class="value-caption" id="obligation-caption">
+              Short–term obligations against available cash.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="section">
+        <h3 class="section-title">Projects progress</h3>
+        <div class="projects-grid">
+          <!-- Business Front -->
+          <article class="card" id="project-bf">
+            <div class="card-header">
+              <h4 class="card-title">Business Front</h4>
+              <div class="pill pill--blue" id="bf-status-pill">Design &amp; Licensing Phase</div>
+            </div>
+            <p class="project-phase" id="bf-phase-text">
+              Design &amp; licensing works in progress.
+            </p>
+
+            <div class="value-caption">
+              Design &amp; consultant fees progress based on amounts paid vs. total commitments.
+            </div>
+
+            <div class="meter">
+              <div class="meter-inner" id="bf-progress-bar"></div>
+            </div>
+            <div class="meter-label">
+              <span id="bf-progress-label">0% complete (fees)</span>
+              <span id="bf-schedule-label">Schedule: —</span>
+            </div>
+
+            <div class="project-metrics">
+              <div class="metric-label">Paid to date</div>
+              <div class="metric-value" id="bf-paid">0.00 SAR</div>
+
+              <div class="metric-label">Total if fully paid</div>
+              <div class="metric-value" id="bf-total">0.00 SAR</div>
+
+              <div class="metric-label">Remaining design fees</div>
+              <div class="metric-value" id="bf-remaining">0.00 SAR</div>
+
+              <div class="metric-label">Planned duration</div>
+              <div class="metric-value" id="bf-duration-label">—</div>
+            </div>
+
+            <p class="schedule-note" id="bf-schedule-note">
+              When the phase start date &amp; duration are set, the bar will compare
+              actual vs planned progress.
+            </p>
+          </article>
+
+          <!-- Jada School -->
+          <article class="card" id="project-jada">
+            <div class="card-header">
+              <h4 class="card-title">Jada School</h4>
+              <div class="pill pill--amber" id="jada-status-pill">Awaiting municipality approval</div>
+            </div>
+            <p class="project-phase" id="jada-phase-text">
+              No construction works yet — approvals in progress.
+            </p>
+
+            <div class="value-caption">
+              Overall project readiness based on administrative progress.
+            </div>
+
+            <div class="meter">
+              <div class="meter-inner meter-inner--amber" id="jada-progress-bar"></div>
+            </div>
+            <div class="meter-label">
+              <span id="jada-progress-label">0% complete</span>
+              <span id="jada-schedule-label">Schedule: —</span>
+            </div>
+
+            <p class="schedule-note" id="jada-schedule-note">
+              Set start date, duration and % complete from the admin panel to track this project.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Risks -->
+      <section class="section">
+        <h3 class="section-title">Key risks &amp; alerts</h3>
+        <div class="risks-grid">
+          <article class="card" id="risk-1">
+            <div class="card-header">
+              <h4 class="card-title" id="risk1-title">High risk — Cashflow delay</h4>
+              <div class="pill pill--red" id="risk1-pill">High</div>
+            </div>
+            <p class="risk-body" id="risk1-body">
+              Delay in municipality approval may impact the construction schedule and
+              cashflow commitments.
+            </p>
+          </article>
+
+          <article class="card" id="risk-2">
+            <div class="card-header">
+              <h4 class="card-title" id="risk2-title">Medium risk — Contractor variations</h4>
+              <div class="pill pill--amber" id="risk2-pill">Medium</div>
+            </div>
+            <p class="risk-body" id="risk2-body">
+              Pending variation orders require approval to avoid cost overruns or delays.
+            </p>
+          </article>
+
+          <article class="card" id="risk-3">
+            <div class="card-header">
+              <h4 class="card-title" id="risk3-title">Low risk — Design coordination</h4>
+              <div class="pill pill--green" id="risk3-pill">Low</div>
+            </div>
+            <p class="risk-body" id="risk3-body">
+              Routine coordination between architect, structural and MEP teams. Monitor but no
+              immediate escalation required.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Admin panel -->
+      <section class="admin-panel">
+        <div class="admin-header" id="admin-toggle">
+          <span>
+            CEO controls
+            <span class="admin-header-tag">Admin</span>
           </span>
+          <span aria-hidden="true">▾</span>
         </div>
-      </article>
 
-      <article class="kpi-card">
-        <div class="kpi-label">Pending Payments</div>
-        <div class="kpi-value" id="kpi-pending">—</div>
-        <div class="kpi-sub">
-          <span id="kpi-pending-note">Awaiting approval</span>
-          <span class="pill pill-warn">Under review</span>
-        </div>
-      </article>
-
-      <article class="kpi-card">
-        <div class="kpi-label">30-Day Obligations</div>
-        <div class="kpi-value" id="kpi-obligations">—</div>
-        <div class="kpi-sub">
-          <span id="kpi-obligations-note">Upcoming</span>
-          <span class="pill pill-neutral">Monitored</span>
-        </div>
-      </article>
-    </section>
-
-    <!-- PROJECTS -->
-    <h2 class="section-title">Projects</h2>
-    <section class="projects-grid">
-      <!-- Business Front -->
-      <article class="project-card" id="bf-card">
-        <div class="project-header">
-          <div class="project-name">Business Front</div>
-          <div class="project-badge" id="bf-status-badge">
-            DESIGN & LICENSING
+        <div class="admin-body" id="admin-body">
+          <!-- Projects admin -->
+          <p class="admin-group-title">Projects</p>
+          <div class="admin-row">
+            <p style="font-size: 11px; color: #9ca3af;">
+              التعديلات هنا إدارية فقط (المشاريع والمخاطر). الأرقام المالية تبقى من المحاسب عبر Google Sheets.
+            </p>
           </div>
-        </div>
 
-        <div class="project-row">
-          <span>Paid to date</span>
-          <span class="value" id="bf-paid">—</span>
-        </div>
-        <div class="project-row">
-          <span>Total if full design paid</span>
-          <span class="value" id="bf-total">—</span>
-        </div>
-        <div class="project-row">
-          <span>Remaining design amount</span>
-          <span class="value" id="bf-remaining">—</span>
-        </div>
-
-        <div class="progress-block">
-          <div class="progress-label">
-            <span>Actual progress</span>
-            <span class="value" id="bf-actual-label">0%</span>
-          </div>
-          <div class="progress-bar">
-            <div
-              class="progress-fill-time"
-              id="bf-time-bar"
-            ></div>
-            <div
-              class="progress-fill-actual"
-              id="bf-actual-bar"
-            ></div>
-            <div
-              class="progress-dot"
-              id="bf-today-dot"
-              style="left: 0%"
-            ></div>
-          </div>
-          <div
-            class="schedule-indicator"
-            id="bf-schedule-indicator"
-          >
-            <span class="dot"></span>
-            <span id="bf-schedule-text">No schedule data</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Jada School -->
-      <article class="project-card" id="js-card">
-        <div class="project-header">
-          <div class="project-name">Jada School</div>
-          <div class="project-badge" id="js-status-badge">
-            AWAITING APPROVAL
-          </div>
-        </div>
-
-        <div class="project-row">
-          <span>Spent so far</span>
-          <span class="value" id="js-spent">—</span>
-        </div>
-        <div class="project-row">
-          <span>Baseline (optional)</span>
-          <span class="value" id="js-baseline">—</span>
-        </div>
-        <div class="project-row">
-          <span>Remaining (if baseline set)</span>
-          <span class="value" id="js-remaining">—</span>
-        </div>
-
-        <div class="progress-block">
-          <div class="progress-label">
-            <span>Actual progress</span>
-            <span class="value" id="js-actual-label">0%</span>
-          </div>
-          <div class="progress-bar">
-            <div
-              class="progress-fill-time"
-              id="js-time-bar"
-            ></div>
-            <div
-              class="progress-fill-actual"
-              id="js-actual-bar"
-            ></div>
-            <div
-              class="progress-dot"
-              id="js-today-dot"
-              style="left: 0%"
-            ></div>
-          </div>
-          <div
-            class="schedule-indicator"
-            id="js-schedule-indicator"
-          >
-            <span class="dot"></span>
-            <span id="js-schedule-text">No schedule data</span>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <!-- RISK -->
-    <h2 class="section-title">Key Risk</h2>
-    <section
-      class="risk-card risk-high"
-      id="risk-card"
-    >
-      <div class="risk-header">
-        <div class="risk-title">
-          <span class="icon">⚠️</span>
-          <span id="risk-title">
-            Water displacement at foundation level
-          </span>
-        </div>
-        <span class="risk-pill" id="risk-pill">
-          HIGH RISK
-        </span>
-      </div>
-      <div class="risk-body">
-        <div class="label">Description</div>
-        <div id="risk-body">
-          إزاحة المياه في موقع الأساسات. الإجراء المطلوب:
-          الحصول على معلومات من المبنى المجاور وتقدير
-          استشاري لمدة التأخير ومبلغ الاحتياطي الإضافي في
-          تكلفة الأساسات (توقع مابين 150,000–250,000 ريال).
-        </div>
-      </div>
-    </section>
-
-    <!-- ADMIN PANEL -->
-    <details class="admin-panel">
-      <summary>
-        <span>CEO Controls</span>
-        <span class="admin-tag">LOCAL ONLY</span>
-      </summary>
-      <div class="admin-body">
-        <!-- Business Front -->
-        <div>
-          <div class="admin-section-title">
-            Business Front
-          </div>
-          <div class="admin-grid">
-            <div class="admin-field">
-              <label class="admin-label"
-                >Status text</label
-              >
-              <input
-                type="text"
-                class="admin-input"
-                id="adm-bf-status"
-                placeholder="Design & licensing..."
-              />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label"
-                >Progress % (fees)</label
-              >
-              <input
-                type="number"
-                class="admin-input"
-                id="adm-bf-progress"
-                min="0"
-                max="100"
-              />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label"
-                >Phase start date</label
-              >
-              <input
-                type="date"
-                class="admin-input"
-                id="adm-bf-start"
-              />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label"
-                >Phase duration (days)</label
-              >
-              <input
-                type="number"
-                class="admin-input"
-                id="adm-bf-duration"
-                min="1"
-              />
+          <div class="admin-row">
+            <strong style="font-size: 11px;">Business Front</strong>
+            <div class="admin-grid">
+              <div class="admin-field">
+                <label class="admin-label" for="bf-status-input">Status text</label>
+                <input class="admin-input" id="bf-status-input" placeholder="مثال: Design &amp; licensing phase" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="bf-progress-input">% complete (fees)</label>
+                <input class="admin-input" id="bf-progress-input" type="number" min="0" max="100" step="1" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="bf-start-input">Phase start date</label>
+                <input class="admin-input" id="bf-start-input" type="date" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="bf-duration-input">Planned duration (days)</label>
+                <input class="admin-input" id="bf-duration-input" type="number" min="1" step="1" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Jada School -->
-        <div>
-          <div class="admin-section-title">
-            Jada School
-          </div>
-          <div class="admin-grid">
-            <div class="admin-field">
-              <label class="admin-label"
-                >Status text</label
-              >
-              <input
-                type="text"
-                class="admin-input"
-                id="adm-js-status"
-                placeholder="Awaiting municipality approval..."
-              />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label"
-                >Progress % (fees)</label
-              >
-              <input
-                type="number"
-                class="admin-input"
-                id="adm-js-progress"
-                min="0"
-                max="100"
-              />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label"
-                >Phase start date</label
-              >
-              <input
-                type="date"
-                class="admin-input"
-                id="adm-js-start"
-              />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label"
-                >Phase duration (days)</label
-              >
-              <input
-                type="number"
-                class="admin-input"
-                id="adm-js-duration"
-                min="1"
-              />
-            </div>
-            <div class="admin-field">
-              <label class="admin-label"
-                >Baseline cost (optional)</label
-              >
-              <input
-                type="number"
-                class="admin-input"
-                id="adm-js-baseline"
-                placeholder="14800000"
-              />
+          <div class="admin-row" style="margin-top: 6px;">
+            <strong style="font-size: 11px;">Jada School</strong>
+            <div class="admin-grid">
+              <div class="admin-field">
+                <label class="admin-label" for="jada-status-input">Status text</label>
+                <input class="admin-input" id="jada-status-input" placeholder="مثال: Awaiting municipality approval" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="jada-progress-input">% complete</label>
+                <input class="admin-input" id="jada-progress-input" type="number" min="0" max="100" step="1" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="jada-start-input">Start date</label>
+                <input class="admin-input" id="jada-start-input" type="date" />
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="jada-duration-input">Planned duration (days)</label>
+                <input class="admin-input" id="jada-duration-input" type="number" min="1" step="1" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- RISK -->
-        <div>
-          <div class="admin-section-title">
-            Risk
-          </div>
-          <div class="admin-grid">
-            <div class="admin-field">
-              <label class="admin-label"
-                >Risk title</label
-              >
-              <input
-                type="text"
-                class="admin-input"
-                id="adm-risk-title"
-              />
+          <!-- Risks admin -->
+          <p class="admin-group-title" style="margin-top: 10px;">Risks</p>
+          <div class="admin-row">
+            <div class="admin-grid">
+              <div class="admin-field">
+                <label class="admin-label" for="risk1-level">Risk 1 level</label>
+                <select class="admin-select" id="risk1-level">
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                  <option value="Under review">Under review</option>
+                </select>
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="risk1-title">Risk 1 title</label>
+                <input class="admin-input" id="risk1-title-input" placeholder="High risk — Cashflow delay" />
+              </div>
             </div>
             <div class="admin-field">
-              <label class="admin-label"
-                >Risk level</label
-              >
-              <select
-                class="admin-select"
-                id="adm-risk-level"
-              >
-                <option value="high">High</option>
-                <option value="med">Medium</option>
-                <option value="low">Low</option>
-                <option value="review">Under review</option>
-              </select>
+              <label class="admin-label" for="risk1-body-input">Risk 1 note</label>
+              <textarea class="admin-textarea" id="risk1-body-input"></textarea>
             </div>
           </div>
-          <div class="admin-field" style="margin-top: 5px">
-            <label class="admin-label"
-              >Risk description</label
-            >
-            <textarea
-              id="adm-risk-body"
-              class="admin-input admin-textarea"
-            ></textarea>
-          </div>
-        </div>
 
-        <div class="admin-btn-row">
-          <button
-            class="admin-btn admin-btn-secondary"
-            type="button"
-            id="adm-reset"
-          >
-            Reset defaults
-          </button>
-          <button
-            class="admin-btn admin-btn-primary"
-            type="button"
-            id="adm-save"
-          >
-            Save admin updates
-          </button>
+          <div class="admin-row">
+            <div class="admin-grid">
+              <div class="admin-field">
+                <label class="admin-label" for="risk2-level">Risk 2 level</label>
+                <select class="admin-select" id="risk2-level">
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                  <option value="Under review">Under review</option>
+                </select>
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="risk2-title-input">Risk 2 title</label>
+                <input class="admin-input" id="risk2-title-input" placeholder="Medium risk — Contractor variations" />
+              </div>
+            </div>
+            <div class="admin-field">
+              <label class="admin-label" for="risk2-body-input">Risk 2 note</label>
+              <textarea class="admin-textarea" id="risk2-body-input"></textarea>
+            </div>
+          </div>
+
+          <div class="admin-row">
+            <div class="admin-grid">
+              <div class="admin-field">
+                <label class="admin-label" for="risk3-level">Risk 3 level</label>
+                <select class="admin-select" id="risk3-level">
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                  <option value="Under review">Under review</option>
+                </select>
+              </div>
+              <div class="admin-field">
+                <label class="admin-label" for="risk3-title-input">Risk 3 title</label>
+                <input class="admin-input" id="risk3-title-input" placeholder="Low risk — Design coordination" />
+              </div>
+            </div>
+            <div class="admin-field">
+              <label class="admin-label" for="risk3-body-input">Risk 3 note</label>
+              <textarea class="admin-textarea" id="risk3-body-input"></textarea>
+            </div>
+          </div>
+
+          <div class="admin-actions">
+            <button class="btn-save" id="admin-save-btn">Save changes</button>
+          </div>
         </div>
-        <div class="admin-hint">
-          Admin settings are stored only on this device
-          (local storage). Financial numbers stay linked
-          to Google Sheet.
-        </div>
-      </div>
-    </details>
+      </section>
+    </main>
+
+    <div class="toast" id="toast">Saved locally on this device.</div>
   </div>
 
   <script>
-    // ====== CONFIG ======
-    const SHEET_PUB_URL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpaqjA-UWK3cEkH0WOTcigaNQ-p35ypTyxbpVWC5PWtDXbWPhQ2gEaKakBlA9SBFZPbakjdsuVtbIr/pubhtml?gid=0&single=true";
-
-    const ADMIN_STORAGE_KEY = "facc-admin-v2";
+    // ====== CONFIG: GOOGLE SHEET ======
+    const SHEET_ID = "1-5kA0ZVz2CHKNecriK5RTHilN3jZA0steNxl4yM_jBo";
+    const SHEET_NAME = "Sheet1";
+    const SHEET_RANGE = "A1:H2"; // First row headers, second row values
 
     // ====== HELPERS ======
-    function parseNumber(text) {
-      if (!text) return 0;
-      const cleaned = String(text).replace(/[^\d.-]/g, "");
-      const n = parseFloat(cleaned);
-      return isNaN(n) ? 0 : n;
-    }
-
-    function formatMoney(num) {
-      return (
-        num.toLocaleString("en-US", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        }) + " SAR"
-      );
-    }
-
-    function clamp(val, min, max) {
-      return Math.min(Math.max(val, min), max);
-    }
-
-    function formatLastUpdateLabel(date) {
-      const weekdays = [
-        "SUN",
-        "MON",
-        "TUE",
-        "WED",
-        "THU",
-        "FRI",
-        "SAT",
-      ];
-      const months = [
-        "JAN",
-        "FEB",
-        "MAR",
-        "APR",
-        "MAY",
-        "JUN",
-        "JUL",
-        "AUG",
-        "SEP",
-        "OCT",
-        "NOV",
-        "DEC",
-      ];
-
-      const dayName = weekdays[date.getDay()];
-      const day = String(date.getDate()).padStart(2, "0");
-      const mon = months[date.getMonth()];
-      const year = String(date.getFullYear()).slice(-2);
-
-      const time = date.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
+    function formatCurrency(value) {
+      const num = Number(value) || 0;
+      return num.toLocaleString("en-SA", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
       });
-
-      return `${dayName} ${day} ${mon} ${year} — ${time}`;
     }
 
-    function updateLastUpdateNow() {
-      const el = document.getElementById("last-update");
-      if (!el) return;
-      el.textContent =
-        "Last update: " + formatLastUpdateLabel(new Date());
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
     }
 
-    // ====== GOOGLE SHEET FETCH ======
-
-    async function fetchSheet() {
-      try {
-        const res = await fetch(SHEET_PUB_URL, {
-          cache: "no-cache",
-        });
-        const text = await res.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(
-          text,
-          "text/html"
-        );
-        const table = doc.querySelector("table");
-        if (!table) return;
-
-        const rows = table.querySelectorAll("tr");
-        if (rows.length < 2) return;
-
-        const dataCells = rows[1].querySelectorAll("td");
-        if (dataCells.length === 0) return;
-
-        // Map by column index (as per current sheet)
-        const cash = parseNumber(dataCells[0]?.textContent);
-        const pending = parseNumber(
-          dataCells[1]?.textContent
-        );
-        const obligations = parseNumber(
-          dataCells[2]?.textContent
-        );
-        const bfPaid = parseNumber(
-          dataCells[3]?.textContent
-        );
-        const bfTotal = parseNumber(
-          dataCells[4]?.textContent
-        );
-        const bfRem = parseNumber(
-          dataCells[5]?.textContent
-        );
-        const jsSpent = parseNumber(
-          dataCells[6]?.textContent
-        );
-        const jsBaseline = parseNumber(
-          dataCells[7]?.textContent
-        ); // optional
-        const jsRemaining = jsBaseline
-          ? Math.max(jsBaseline - jsSpent, 0)
-          : 0;
-
-        // Update KPIs
-        const cashEl =
-          document.getElementById("kpi-cash");
-        if (cashEl) cashEl.textContent = formatMoney(cash);
-
-        const pendingEl =
-          document.getElementById("kpi-pending");
-        if (pendingEl)
-          pendingEl.textContent = formatMoney(pending);
-
-        const oblEl =
-          document.getElementById("kpi-obligations");
-        if (oblEl)
-          oblEl.textContent = formatMoney(obligations);
-
-        // Simple logic for cash comfort
-        const cashPill =
-          document.getElementById("kpi-cash-pill");
-        if (cashPill) {
-          cashPill.classList.remove(
-            "pill-safe",
-            "pill-warn",
-            "pill-neutral"
-          );
-          let cls = "pill-safe";
-          let label = "Comfortable";
-          if (cash < obligations) {
-            cls = "pill-warn";
-            label = "Below obligations";
-          } else if (cash < obligations * 1.3) {
-            cls = "pill-neutral";
-            label = "Tight";
-          }
-          cashPill.classList.add(cls);
-          cashPill.textContent = label;
-        }
-
-        // Update Business Front numbers
-        if (document.getElementById("bf-paid"))
-          document.getElementById(
-            "bf-paid"
-          ).textContent = formatMoney(bfPaid);
-        if (document.getElementById("bf-total"))
-          document.getElementById(
-            "bf-total"
-          ).textContent = formatMoney(bfTotal);
-        if (document.getElementById("bf-remaining"))
-          document.getElementById(
-            "bf-remaining"
-          ).textContent = formatMoney(bfRem);
-
-        // Update Jada School numbers
-        document.getElementById(
-          "js-spent"
-        ).textContent = jsSpent
-          ? formatMoney(jsSpent)
-          : "—";
-        document.getElementById(
-          "js-baseline"
-        ).textContent = jsBaseline
-          ? formatMoney(jsBaseline)
-          : "—";
-        document.getElementById(
-          "js-remaining"
-        ).textContent =
-          jsBaseline && jsRemaining
-            ? formatMoney(jsRemaining)
-            : "—";
-
-        updateLastUpdateNow();
-      } catch (e) {
-        console.error("Sheet fetch error", e);
-      }
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
     }
 
-    // ====== ADMIN STATE ======
-    const adminDefaults = {
-      bf: {
-        status: "Design & licensing phase",
-        progress: 30,
-        start: "2024-09-25",
-        duration: 120,
-      },
-      js: {
-        status: "Awaiting municipality approval",
-        progress: 0,
-        start: "",
-        duration: 0,
-        baseline: 0,
-      },
-      risk: {
-        title: "Water displacement at foundation level",
-        level: "high",
-        body:
-          "إزاحة المياه في موقع الأساسات. الإجراء المطلوب: الحصول على معلومات من المبنى المجاور وتقدير استشاري لمدة التأخير ومبلغ الاحتياطي الإضافي في تكلفة الأساسات (توقع مابين 150,000–250,000 ريال).",
-      },
-    };
-
-    let adminState = structuredClone(adminDefaults);
-
-    function loadAdminState() {
-      try {
-        const raw = localStorage.getItem(ADMIN_STORAGE_KEY);
-        if (!raw) return;
-        const parsed = JSON.parse(raw);
-        adminState = {
-          bf: { ...adminDefaults.bf, ...(parsed.bf || {}) },
-          js: { ...adminDefaults.js, ...(parsed.js || {}) },
-          risk: {
-            ...adminDefaults.risk,
-            ...(parsed.risk || {}),
-          },
-        };
-      } catch (e) {
-        console.warn("Admin state load failed", e);
-      }
-    }
-
-    function saveAdminState() {
-      try {
-        localStorage.setItem(
-          ADMIN_STORAGE_KEY,
-          JSON.stringify(adminState)
-        );
-      } catch (e) {
-        console.warn("Admin state save failed", e);
-      }
-    }
-
-    // ====== APPLY ADMIN TO UI ======
-
-    function updateRiskCard() {
-      const card = document.getElementById("risk-card");
-      const titleEl = document.getElementById("risk-title");
-      const bodyEl = document.getElementById("risk-body");
-      const pillEl = document.getElementById("risk-pill");
-      if (!card || !titleEl || !bodyEl || !pillEl) return;
-
-      card.classList.remove(
-        "risk-high",
-        "risk-med",
-        "risk-low",
-        "risk-review"
+    function setPillLevel(pillElement, level, fallbackClass) {
+      const lv = (level || "").toString().toLowerCase();
+      pillElement.classList.remove(
+        "pill--green",
+        "pill--amber",
+        "pill--red",
+        "pill--blue",
+        "pill--purple",
+        "pill--grey"
       );
-      let cls = "risk-high";
-      let label = "HIGH RISK";
-      switch (adminState.risk.level) {
-        case "med":
-          cls = "risk-med";
-          label = "MEDIUM RISK";
-          break;
-        case "low":
-          cls = "risk-low";
-          label = "LOW RISK";
-          break;
-        case "review":
-          cls = "risk-review";
-          label = "UNDER REVIEW";
-          break;
-      }
-      card.classList.add(cls);
-      titleEl.textContent = adminState.risk.title || "";
-      bodyEl.textContent = adminState.risk.body || "";
-      pillEl.textContent = label;
+
+      let cls = fallbackClass || "pill--grey";
+
+      if (lv.includes("high")) cls = "pill--red";
+      else if (lv.includes("medium")) cls = "pill--amber";
+      else if (lv.includes("low")) cls = "pill--green";
+      else if (lv.includes("review") || lv.includes("await")) cls = "pill--purple";
+      else if (lv.includes("on track") || lv.includes("progress")) cls = "pill--blue";
+
+      pillElement.classList.add(cls);
+      pillElement.textContent = level;
     }
 
-    function computeScheduleObj(start, durationDays) {
-      if (!start || !durationDays || durationDays <= 0) {
+    function setStatusPillFromText(pillElement, text) {
+      const t = (text || "").toString().toLowerCase();
+      pillElement.classList.remove(
+        "pill--green",
+        "pill--amber",
+        "pill--red",
+        "pill--blue",
+        "pill--purple",
+        "pill--grey"
+      );
+      let cls = "pill--blue";
+
+      if (t.includes("awaiting") || t.includes("review")) cls = "pill--amber";
+      else if (t.includes("on hold") || t.includes("stopped") || t.includes("delayed")) cls = "pill--red";
+      else if (t.includes("completed") || t.includes("handed over") || t.includes("finished")) cls = "pill--green";
+      else if (t.includes("paused")) cls = "pill--red";
+
+      pillElement.classList.add(cls);
+      pillElement.textContent = text;
+    }
+
+    function computeScheduleStatus(startDateStr, durationDays, actualPercent) {
+      if (!startDateStr || !durationDays || durationDays <= 0) {
         return {
-          timePct: 0,
-          label: "No schedule data",
-          status: "none",
+          plannedPercent: null,
+          label: "Schedule: —",
+          note: "Set start date and planned duration to compare actual vs planned progress."
         };
       }
-      const startDate = new Date(start);
-      if (isNaN(startDate.getTime())) {
+
+      const start = new Date(startDateStr);
+      if (isNaN(start.getTime())) {
         return {
-          timePct: 0,
-          label: "No schedule data",
-          status: "none",
+          plannedPercent: null,
+          label: "Schedule: —",
+          note: "Invalid start date format."
         };
       }
+
       const now = new Date();
-      const elapsedMs = now - startDate;
-      const elapsedDays = elapsedMs / (1000 * 60 * 60 * 24);
-      let timePct =
-        (elapsedDays / durationDays) * 100;
-      timePct = clamp(timePct, 0, 100);
+      const msInDay = 1000 * 60 * 60 * 24;
+      const elapsed = Math.max(0, (now.getTime() - start.getTime()) / msInDay);
+      const plannedPercent = clamp((elapsed / durationDays) * 100, 0, 100);
+      const actual = clamp(actualPercent || 0, 0, 100);
+
+      let statusText = "On track vs planned schedule.";
+      if (actual >= plannedPercent + 5) statusText = "Ahead of schedule.";
+      else if (actual <= plannedPercent - 5) statusText = "Behind schedule.";
+
+      const label = "Schedule: " + Math.round(plannedPercent) + "% planned";
+
       return {
-        timePct,
-        label: "",
-        status: "none",
+        plannedPercent,
+        label,
+        note: statusText
       };
     }
 
-    function applyProjectUI({
-      projectKey,
-      state,
-      actualPct,
-      timePct,
-    }) {
-      const prefix = projectKey === "bf" ? "bf" : "js";
+    function updateLastUpdate() {
+      const el = document.getElementById("last-update");
+      const now = new Date();
 
-      const badge = document.getElementById(
-        `${prefix}-status-badge`
-      );
-      if (badge) {
-        badge.textContent =
-          (state.status || "").toUpperCase();
-      }
-
-      const actualLabel = document.getElementById(
-        `${prefix}-actual-label`
-      );
-      if (actualLabel) {
-        actualLabel.textContent =
-          clamp(actualPct, 0, 100).toFixed(0) + "%";
-      }
-
-      const actualBar = document.getElementById(
-        `${prefix}-actual-bar`
-      );
-      if (actualBar) {
-        actualBar.style.width =
-          clamp(actualPct, 0, 100) + "%";
-      }
-
-      const timeBar = document.getElementById(
-        `${prefix}-time-bar`
-      );
-      if (timeBar) {
-        timeBar.style.width =
-          clamp(timePct, 0, 100) + "%";
-      }
-
-      const dot = document.getElementById(
-        `${prefix}-today-dot`
-      );
-      if (dot) {
-        dot.style.left =
-          clamp(timePct, 0, 100) + "%";
-      }
-
-      const indicator = document.getElementById(
-        `${prefix}-schedule-indicator`
-      );
-      const text = document.getElementById(
-        `${prefix}-schedule-text`
-      );
-
-      if (!indicator || !text) return;
-
-      indicator.classList.remove(
-        "ahead",
-        "on-track",
-        "behind"
-      );
-
-      if (!state.start || !state.duration) {
-        text.textContent = "No schedule data";
-        return;
-      }
-
-      const diff = actualPct - timePct;
-      let status = "on-track";
-      let label = "On track";
-
-      if (diff >= 5) {
-        status = "ahead";
-        label = "Ahead of schedule";
-      } else if (diff <= -5) {
-        status = "behind";
-        label = "Behind schedule";
-      }
-
-      indicator.classList.add(status);
-      text.textContent = label;
-    }
-
-    function updateProjectsFromAdmin() {
-      // Business Front
-      const bfSched = computeScheduleObj(
-        adminState.bf.start,
-        adminState.bf.duration
-      );
-      applyProjectUI({
-        projectKey: "bf",
-        state: adminState.bf,
-        actualPct: adminState.bf.progress || 0,
-        timePct: bfSched.timePct,
-      });
-
-      // Jada School
-      const jsSched = computeScheduleObj(
-        adminState.js.start,
-        adminState.js.duration
-      );
-      applyProjectUI({
-        projectKey: "js",
-        state: adminState.js,
-        actualPct: adminState.js.progress || 0,
-        timePct: jsSched.timePct,
-      });
-
-      // baseline & remaining already updated from sheet
-    }
-
-    function populateAdminForm() {
-      document.getElementById(
-        "adm-bf-status"
-      ).value = adminState.bf.status || "";
-      document.getElementById(
-        "adm-bf-progress"
-      ).value =
-        adminState.bf.progress ?? "";
-      document.getElementById(
-        "adm-bf-start"
-      ).value = adminState.bf.start || "";
-      document.getElementById(
-        "adm-bf-duration"
-      ).value =
-        adminState.bf.duration || "";
-
-      document.getElementById(
-        "adm-js-status"
-      ).value = adminState.js.status || "";
-      document.getElementById(
-        "adm-js-progress"
-      ).value =
-        adminState.js.progress ?? "";
-      document.getElementById(
-        "adm-js-start"
-      ).value = adminState.js.start || "";
-      document.getElementById(
-        "adm-js-duration"
-      ).value =
-        adminState.js.duration || "";
-      document.getElementById(
-        "adm-js-baseline"
-      ).value =
-        adminState.js.baseline || "";
-
-      document.getElementById(
-        "adm-risk-title"
-      ).value = adminState.risk.title || "";
-      document.getElementById(
-        "adm-risk-body"
-      ).value = adminState.risk.body || "";
-      document.getElementById(
-        "adm-risk-level"
-      ).value = adminState.risk.level || "high";
-    }
-
-    function wireAdminHandlers() {
-      const saveBtn = document.getElementById("adm-save");
-      const resetBtn =
-        document.getElementById("adm-reset");
-
-      if (saveBtn) {
-        saveBtn.addEventListener("click", () => {
-          adminState.bf.status =
-            document.getElementById(
-              "adm-bf-status"
-            ).value || "";
-          adminState.bf.progress = parseFloat(
-            document.getElementById("adm-bf-progress")
-              .value
-          );
-          adminState.bf.start =
-            document.getElementById(
-              "adm-bf-start"
-            ).value || "";
-          adminState.bf.duration = parseInt(
-            document.getElementById("adm-bf-duration")
-              .value,
-            10
-          );
-
-          adminState.js.status =
-            document.getElementById(
-              "adm-js-status"
-            ).value || "";
-          adminState.js.progress = parseFloat(
-            document.getElementById("adm-js-progress")
-              .value
-          );
-          adminState.js.start =
-            document.getElementById(
-              "adm-js-start"
-            ).value || "";
-          adminState.js.duration = parseInt(
-            document.getElementById("adm-js-duration")
-              .value,
-            10
-          );
-          adminState.js.baseline = parseFloat(
-            document.getElementById("adm-js-baseline")
-              .value
-          );
-
-          adminState.risk.title =
-            document.getElementById(
-              "adm-risk-title"
-            ).value || "";
-          adminState.risk.body =
-            document.getElementById(
-              "adm-risk-body"
-            ).value || "";
-          adminState.risk.level =
-            document.getElementById(
-              "adm-risk-level"
-            ).value || "high";
-
-          saveAdminState();
-          updateProjectsFromAdmin();
-          updateRiskCard();
+      // Hijri date using browser locale (Saudi, Islamic calendar)
+      let hijriDate;
+      try {
+        hijriDate = now.toLocaleDateString("en-SA-u-ca-islamic", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        });
+      } catch (err) {
+        hijriDate = now.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
         });
       }
 
-      if (resetBtn) {
-        resetBtn.addEventListener("click", () => {
-          adminState = structuredClone(adminDefaults);
-          saveAdminState();
-          populateAdminForm();
-          updateProjectsFromAdmin();
-          updateRiskCard();
+      const timeStr = now.toLocaleTimeString("en-SA", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+      });
+
+      el.textContent = "Last update: " + hijriDate + " at " + timeStr;
+    }
+
+    // ====== FINANCIAL CARDS FROM SHEET ======
+    async function loadSheetData() {
+      const url =
+        "https://docs.google.com/spreadsheets/d/" +
+        SHEET_ID +
+        "/gviz/tq?sheet=" +
+        encodeURIComponent(SHEET_NAME) +
+        "&range=" +
+        encodeURIComponent(SHEET_RANGE);
+
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
+
+        const jsonStart = text.indexOf("{");
+        const jsonEnd = text.lastIndexOf("}");
+        if (jsonStart === -1 || jsonEnd === -1) {
+          throw new Error("Unexpected sheet response.");
+        }
+
+        const jsonString = text.substring(jsonStart, jsonEnd + 1);
+        const data = JSON.parse(jsonString);
+
+        const cols = data.table.cols.map(col => col.label || "");
+        const firstRow = data.table.rows[0] && data.table.rows[0].c ? data.table.rows[0].c : [];
+
+        const values = {};
+        cols.forEach((label, index) => {
+          const cell = firstRow[index];
+          values[label] = cell ? cell.v : null;
         });
+
+        updateFinancialCards(values);
+        updateLastUpdate();
+      } catch (err) {
+        console.error("Error loading sheet data:", err);
+        showToast("Error loading sheet data.");
       }
+    }
+
+    function updateFinancialCards(values) {
+      const cashRaw = values["Cash_balance"];
+      const pendingRaw = values["Pending_payments"];
+      const obligationRaw = values["Obligation_30D"];
+      const bfPaidRaw = values["BF_Paid"];
+      const bfTotalRaw = values["BF_totalFull"];
+      const bfRemainingRaw = values["BF_remainingDesign"];
+      const jadaSpentRaw = values["JADA_spent"]; // Optional for future use
+
+      const cash = Number(cashRaw) || 0;
+      const pending = Number(pendingRaw) || 0;
+      const obligation = Number(obligationRaw) || 0;
+      const bfPaid = Number(bfPaidRaw) || 0;
+      const bfTotal = Number(bfTotalRaw) || 0;
+      const bfRemaining = Number(bfRemainingRaw) || 0;
+
+      const cashEl = document.getElementById("cash-value");
+      const pendingEl = document.getElementById("pending-value");
+      const obligationEl = document.getElementById("obligation-value");
+      const cashCaption = document.getElementById("cash-caption");
+      const pendingCaption = document.getElementById("pending-caption");
+      const obligationCaption = document.getElementById("obligation-caption");
+      const cashPill = document.getElementById("cash-status-pill");
+      const pendingPill = document.getElementById("pending-status-pill");
+      const obligationPill = document.getElementById("obligation-status-pill");
+
+      cashEl.textContent = formatCurrency(cash);
+      pendingEl.textContent = formatCurrency(pending);
+      obligationEl.textContent = formatCurrency(obligation);
+
+      const totalShortTerm = pending + obligation;
+      let cashStatus = "Comfortable";
+      let cashClass = "pill--green";
+      let cashNote = "Cash comfortably covers short–term needs.";
+
+      if (totalShortTerm <= 0 && cash === 0) {
+        cashStatus = "No data";
+        cashClass = "pill--grey";
+        cashNote = "Waiting for first update from accounting.";
+      } else if (cash >= totalShortTerm * 1.2) {
+        cashStatus = "Comfortable";
+        cashClass = "pill--green";
+        cashNote = "Cash is higher than short–term obligations.";
+      } else if (cash >= totalShortTerm * 0.8) {
+        cashStatus = "Tight but OK";
+        cashClass = "pill--amber";
+        cashNote = "Cash roughly matches short–term obligations. Monitor closely.";
+      } else {
+        cashStatus = "Insufficient";
+        cashClass = "pill--red";
+        cashNote = "Cash is below short–term obligations. Consider actions.";
+      }
+
+      cashPill.className = "pill " + cashClass;
+      cashPill.textContent = cashStatus;
+      cashCaption.textContent = cashNote;
+
+      if (pending <= 0) {
+        pendingPill.className = "pill pill--green";
+        pendingPill.textContent = "Clear";
+        pendingCaption.textContent = "No pending payments with suppliers.";
+      } else {
+        pendingPill.className = "pill pill--amber";
+        pendingPill.textContent = "Under review";
+        pendingCaption.textContent = "Pending amounts under negotiation or review.";
+      }
+
+      if (obligation <= 0) {
+        obligationPill.className = "pill pill--green";
+        obligationPill.textContent = "Clear";
+        obligationCaption.textContent = "No 30-day obligations registered.";
+      } else if (cash >= obligation) {
+        obligationPill.className = "pill pill--green";
+        obligationPill.textContent = "Covered";
+        obligationCaption.textContent = "30-day obligations are covered by cash.";
+      } else {
+        obligationPill.className = "pill pill--red";
+        obligationPill.textContent = "Attention";
+        obligationCaption.textContent = "30-day obligations exceed cash. Monitor closely.";
+      }
+
+      // Update Business Front financials
+      document.getElementById("bf-paid").textContent = formatCurrency(bfPaid) + " SAR";
+      document.getElementById("bf-total").textContent = formatCurrency(bfTotal) + " SAR";
+      document.getElementById("bf-remaining").textContent = formatCurrency(bfRemaining) + " SAR";
+    }
+
+    // ====== PROJECTS & RISKS ADMIN (LOCAL) ======
+    const STORAGE_KEY = "facc-admin-state-v1";
+
+    const defaultState = {
+      projects: {
+        businessFront: {
+          statusText: "Design & licensing phase",
+          progressPercent: 30,
+          startDate: "",
+          durationDays: null
+        },
+        jadaSchool: {
+          statusText: "Awaiting municipality approval",
+          progressPercent: 0,
+          startDate: "",
+          durationDays: null
+        }
+      },
+      risks: {
+        risk1: {
+          level: "High",
+          title: "High risk — Cashflow delay",
+          body:
+            "Delay in municipality approval may impact the construction schedule and cashflow commitments."
+        },
+        risk2: {
+          level: "Medium",
+          title: "Medium risk — Contractor variations",
+          body:
+            "Pending variation orders require approval to avoid cost overruns or delays."
+        },
+        risk3: {
+          level: "Low",
+          title: "Low risk — Design coordination",
+          body:
+            "Routine coordination between architect, structural and MEP teams. Monitor but no immediate escalation required."
+        }
+      }
+    };
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return JSON.parse(JSON.stringify(defaultState));
+        const parsed = JSON.parse(raw);
+        return Object.assign({}, defaultState, parsed);
+      } catch (err) {
+        console.warn("Error loading local state, using defaults.", err);
+        return JSON.parse(JSON.stringify(defaultState));
+      }
+    }
+
+    function saveState(state) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (err) {
+        console.warn("Unable to save admin state:", err);
+      }
+    }
+
+    function applyProjectsToUI(state) {
+      const bf = state.projects.businessFront;
+      const jada = state.projects.jadaSchool;
+
+      const bfStatusPill = document.getElementById("bf-status-pill");
+      const bfPhaseText = document.getElementById("bf-phase-text");
+      const bfBar = document.getElementById("bf-progress-bar");
+      const bfLabel = document.getElementById("bf-progress-label");
+      const bfScheduleLabel = document.getElementById("bf-schedule-label");
+      const bfScheduleNote = document.getElementById("bf-schedule-note");
+      const bfDurationLabel = document.getElementById("bf-duration-label");
+
+      const bfDurationText = bf.durationDays
+        ? bf.durationDays + " days planned"
+        : "—";
+      bfDurationLabel.textContent = bfDurationText;
+
+      setStatusPillFromText(bfStatusPill, bf.statusText || "Design & licensing phase");
+      bfPhaseText.textContent = bf.statusText || "Design & licensing works in progress.";
+
+      const bfProgress = clamp(Number(bf.progressPercent) || 0, 0, 100);
+      bfBar.style.width = bfProgress + "%";
+      bfLabel.textContent = bfProgress.toFixed(0) + "% complete (fees)";
+
+      const bfSchedule = computeScheduleStatus(bf.startDate, bf.durationDays, bfProgress);
+      bfScheduleLabel.textContent = bfSchedule.label;
+      bfScheduleNote.textContent = bfSchedule.note;
+
+      const jStatusPill = document.getElementById("jada-status-pill");
+      const jPhaseText = document.getElementById("jada-phase-text");
+      const jBar = document.getElementById("jada-progress-bar");
+      const jLabel = document.getElementById("jada-progress-label");
+      const jScheduleLabel = document.getElementById("jada-schedule-label");
+      const jScheduleNote = document.getElementById("jada-schedule-note");
+
+      setStatusPillFromText(
+        jStatusPill,
+        jada.statusText || "Awaiting municipality approval"
+      );
+      jPhaseText.textContent =
+        jada.statusText || "No construction works yet — approvals in progress.";
+
+      const jProgress = clamp(Number(jada.progressPercent) || 0, 0, 100);
+      jBar.style.width = jProgress + "%";
+      jLabel.textContent = jProgress.toFixed(0) + "% complete";
+
+      const jSchedule = computeScheduleStatus(jada.startDate, jada.durationDays, jProgress);
+      jScheduleLabel.textContent = jSchedule.label;
+      jScheduleNote.textContent = jSchedule.note;
+    }
+
+    function applyRisksToUI(state) {
+      const r1 = state.risks.risk1;
+      const r2 = state.risks.risk2;
+      const r3 = state.risks.risk3;
+
+      const r1Title = document.getElementById("risk1-title");
+      const r1Body = document.getElementById("risk1-body");
+      const r1Pill = document.getElementById("risk1-pill");
+
+      const r2Title = document.getElementById("risk2-title");
+      const r2Body = document.getElementById("risk2-body");
+      const r2Pill = document.getElementById("risk2-pill");
+
+      const r3Title = document.getElementById("risk3-title");
+      const r3Body = document.getElementById("risk3-body");
+      const r3Pill = document.getElementById("risk3-pill");
+
+      r1Title.textContent = r1.title;
+      r1Body.textContent = r1.body;
+      setPillLevel(r1Pill, r1.level, "pill--red");
+
+      r2Title.textContent = r2.title;
+      r2Body.textContent = r2.body;
+      setPillLevel(r2Pill, r2.level, "pill--amber");
+
+      r3Title.textContent = r3.title;
+      r3Body.textContent = r3.body;
+      setPillLevel(r3Pill, r3.level, "pill--green");
+    }
+
+    function fillAdminForm(state) {
+      const bf = state.projects.businessFront;
+      const jada = state.projects.jadaSchool;
+      const r1 = state.risks.risk1;
+      const r2 = state.risks.risk2;
+      const r3 = state.risks.risk3;
+
+      document.getElementById("bf-status-input").value = bf.statusText || "";
+      document.getElementById("bf-progress-input").value =
+        bf.progressPercent != null ? bf.progressPercent : "";
+      document.getElementById("bf-start-input").value = bf.startDate || "";
+      document.getElementById("bf-duration-input").value =
+        bf.durationDays != null ? bf.durationDays : "";
+
+      document.getElementById("jada-status-input").value = jada.statusText || "";
+      document.getElementById("jada-progress-input").value =
+        jada.progressPercent != null ? jada.progressPercent : "";
+      document.getElementById("jada-start-input").value = jada.startDate || "";
+      document.getElementById("jada-duration-input").value =
+        jada.durationDays != null ? jada.durationDays : "";
+
+      document.getElementById("risk1-level").value = r1.level;
+      document.getElementById("risk1-title-input").value = r1.title;
+      document.getElementById("risk1-body-input").value = r1.body;
+
+      document.getElementById("risk2-level").value = r2.level;
+      document.getElementById("risk2-title-input").value = r2.title;
+      document.getElementById("risk2-body-input").value = r2.body;
+
+      document.getElementById("risk3-level").value = r3.level;
+      document.getElementById("risk3-title-input").value = r3.title;
+      document.getElementById("risk3-body-input").value = r3.body;
+    }
+
+    function readAdminForm(state) {
+      const newState = JSON.parse(JSON.stringify(state));
+
+      const bf = newState.projects.businessFront;
+      bf.statusText = document.getElementById("bf-status-input").value.trim();
+      bf.progressPercent = Number(
+        document.getElementById("bf-progress-input").value || 0
+      );
+      bf.startDate = document.getElementById("bf-start-input").value;
+      const bfDurRaw = document.getElementById("bf-duration-input").value;
+      bf.durationDays = bfDurRaw ? Number(bfDurRaw) : null;
+
+      const jada = newState.projects.jadaSchool;
+      jada.statusText = document.getElementById("jada-status-input").value.trim();
+      jada.progressPercent = Number(
+        document.getElementById("jada-progress-input").value || 0
+      );
+      jada.startDate = document.getElementById("jada-start-input").value;
+      const jDurRaw = document.getElementById("jada-duration-input").value;
+      jada.durationDays = jDurRaw ? Number(jDurRaw) : null;
+
+      const r1 = newState.risks.risk1;
+      r1.level = document.getElementById("risk1-level").value;
+      r1.title = document.getElementById("risk1-title-input").value.trim() || r1.title;
+      r1.body = document.getElementById("risk1-body-input").value.trim() || r1.body;
+
+      const r2 = newState.risks.risk2;
+      r2.level = document.getElementById("risk2-level").value;
+      r2.title = document.getElementById("risk2-title-input").value.trim() || r2.title;
+      r2.body = document.getElementById("risk2-body-input").value.trim() || r2.body;
+
+      const r3 = newState.risks.risk3;
+      r3.level = document.getElementById("risk3-level").value;
+      r3.title = document.getElementById("risk3-title-input").value.trim() || r3.title;
+      r3.body = document.getElementById("risk3-body-input").value.trim() || r3.body;
+
+      return newState;
     }
 
     // ====== INIT ======
-    document.addEventListener(
-      "DOMContentLoaded",
-      () => {
-        updateLastUpdateNow();
-        loadAdminState();
-        populateAdminForm();
-        updateProjectsFromAdmin();
-        updateRiskCard();
-        wireAdminHandlers();
-        fetchSheet();
-      }
-    );
+    document.addEventListener("DOMContentLoaded", () => {
+      const state = loadState();
+      applyProjectsToUI(state);
+      applyRisksToUI(state);
+      fillAdminForm(state);
+      loadSheetData();
+
+      document
+        .getElementById("admin-toggle")
+        .addEventListener("click", () => {
+          const body = document.getElementById("admin-body");
+          body.classList.toggle("open");
+        });
+
+      document
+        .getElementById("admin-save-btn")
+        .addEventListener("click", () => {
+          const current = loadState();
+          const updated = readAdminForm(current);
+          saveState(updated);
+          applyProjectsToUI(updated);
+          applyRisksToUI(updated);
+          showToast("Admin changes saved on this device.");
+        });
+
+      // Optional: auto-refresh sheet every 10 minutes
+      setInterval(loadSheetData, 10 * 60 * 1000);
+    });
   </script>
 </body>
 </html>
-
